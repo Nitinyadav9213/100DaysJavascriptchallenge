@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Burned&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Salsa&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    .maincontainer {
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 50px;
+      font-family: "Rubik Burned", system-ui;
+      font-weight: 700;
+      color: rgb(255, 255, 255);
+    }
+
+    .button {
+      margin-top: 300px;
+    }
+
+    p {
+      color: white;
+      font-size: 20px;
+      font-family: "Salsa", cursive;
+    }
+
+    button {
+      padding: 30px;
+      border: 2px solid white;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  <body style="background-color: #212121">
+    <div class="maincontainer">
+      <h3>Background Color Changer</h3>
+
+      <div class="button">
+        <button style="background-color: red" id="red"></button>
+        <button style="background-color: blue" id="blue"></button>
+        <button style="background-color: pink" id="pink"></button>
+        <button style="background-color: yellow" id="yellow"></button>
+        <button style="background-color: purple" id="purple"></button>
+        <button style="background-color: green" id="green"></button>
+        <button style="background-color: orange" id="orange"></button>
+        <button style="background-color: aqua" id="aqua"></button>
+        <button style="background-color: Lime" id="Lime"></button>
+        <button style="background-color: fuchsia" id="fuchsia"></button>
+        <button style="background-color: indigo" id="indigo"></button>
+        <button style="background-color: coral" id="coral"></button>
+        <button style="background-color: khaki" id="khaki"></button>
+        <button style="background-color: rosybrown" id="rosybrown"></button>
+        <button style="background-color: brown" id="brown"></button>
+        <button style="background-color: cadetblue" id="cadetblue"></button>
+
+        <p>
+          Try Clicking on one of the above color to change <br />
+          the Backgroung Color of the page!
+        </p>
+      </div>
+    </div>
+
+    <script>
+      let Body = document.querySelector("body");
+      let Buttons = document.querySelectorAll("button");
+
+      Buttons.forEach((button) => {
+        button.addEventListener("click", function (e) {
+          Body.style.backgroundColor = e.target.id;
+        });
+      });
+    </script>
+  </body>
+</html>
