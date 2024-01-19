@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gussing number</title>
+  </head>
+
+  <style>
+   
+    .maincontainer {
+      background-color: rgb(255, 255, 255);
+      border: 2px solid black;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      padding: 0px 20px;
+      text-align: center;
+      border-radius: 3px;
+    }
+    .title {
+      background-color: rgb(36, 58, 104);
+      border-radius: 5px;
+      margin-bottom: 20px;
+      padding: 5px;
+      font-size: 15px;
+      height: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    #guess {
+      color: rgb(29, 116, 238);
+    }
+    #guessField {
+      width: 50px;
+      height: 24px;
+      margin: 10px 0px 10px 0px;
+      outline: none;
+      text-align: center;
+    }
+    #subt {
+      padding: 5px 20px;
+      background-color: rgb(34, 73, 212);
+      border: none;
+      border-radius: 4px;
+      color: white;
+    }
+
+    .loworHi {
+      color: rgb(255, 255, 255);
+      font-size: 18px;
+      background-color: rgb(34, 73, 212);
+    }
+  </style>
+  <body style="background-color: #638def">
+    <div class="maincontainer">
+      <div class="title">Number Guessing Number</div>
+
+      <form class="form">
+        <label for="guessfield" id="guess"> Guess a number between 1-50</label
+        ><br />
+        <input type="text" id="guessField" class="guessField" /> <br />
+        <input type="submit" id="subt" value="Submit" class="guessSubmit" />
+      </form>
+
+      <div class="resultpass">
+       
+
+        <p>Guesses remaining : <span class="lastResult">10</span></p>
+
+        <p class="loworHi"></p>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
