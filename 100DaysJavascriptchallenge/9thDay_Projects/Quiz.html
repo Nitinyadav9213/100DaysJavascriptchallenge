@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .quizmaincontainer {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      min-height: 100vh;
+      background-color: rgb(215, 231, 255);
+    }
+
+    .QuestionData {
+      background-color: white;
+      width: 40vw;
+
+      border-radius: 1rem;
+    }
+
+    li {
+      margin-bottom: 5px;
+
+      padding: 5px 0px;
+      margin-left: -30px;
+      list-style: none;
+    }
+    h2 {
+      text-align: center;
+    }
+
+    button {
+      display: block;
+      margin: auto;
+      padding: 4px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: black;
+      color: white;
+      font-size: 14px;
+    }
+
+    .Buttondiv {
+      display: flex;
+      padding-bottom: 10px;
+    }
+
+    .correctAnswer {
+      background-color: #3b6080;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      padding: 2px;
+    }
+  </style>
+  <body>
+    <div class="quizmaincontainer">
+      <div class="QuestionData">
+        <h2 class="Question">Quessdaskd</h2>
+        <ul>
+          <li>
+            <input type="radio" name="Answer" id="Opt 1 " class="InputAnswer" />
+            <label class="OptionA" for="Answer"> Option A</label>
+          </li>
+          <li>
+            <input type="radio" name="Answer" id="Opt 2" class="InputAnswer" />
+            <label class="OptionB" for="Answer"> Option B</label>
+          </li>
+          <li>
+            <input type="radio" name="Answer" id="Opt 3" class="InputAnswer" />
+            <label class="OptionC" for="Answer"> Option C</label>
+          </li>
+          <li>
+            <input type="radio" name="Answer" id="ans4" class="InputAnswer" />
+            <label class="OptionD" for="Answer"> Option D</label>
+          </li>
+        </ul>
+
+        <div class="Buttondiv">
+          <button class="Checkbutton">Check</button>
+          <button class="Nextbutton">Next</button>
+        </div>
+
+        <div id="correctopt" class="correctAnswer"></div>
+      </div>
+    </div>
+
+ <script src="Quiz.js"></script>
+  </body>
+</html>
