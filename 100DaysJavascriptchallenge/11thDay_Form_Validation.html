@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rubik Doodle Shadow
+      &display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: rgb(235, 255, 255);
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .maincontainer {
+      width: calc(100vw - 75vw);
+      overflow: hidden;
+      max-width: 100%;
+      background-color: white;
+      border-radius: 20px;
+      margin-top: 10%;
+      border: 2px solid rgb(122, 122, 122);
+    }
+
+    .maincontainer h2 {
+      text-align: center;
+      font-family: "Rubik Doodle Shadow", sans-serif;
+    }
+    .form_control {
+      padding: 0px 20px 10px 10px;
+    }
+    .form_control label {
+      display: block;
+      font-size: 15px;
+    }
+    .form_control input {
+      width: 100%;
+      height: 20px;
+      outline: 0;
+    }
+
+    #Submit {
+      display: block;
+      margin: auto;
+      padding: 4px 20px;
+      background-color: rgb(95, 169, 253);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .form_control small {
+      color: red;
+      visibility: hidden;
+    }
+
+    .form_control.error small {
+      visibility: visible;
+    }
+  </style>
+  <body
+    style="
+      background-image: url(https://t3.ftcdn.net/jpg/03/55/60/70/360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP.jpg);
+    "
+  >
+    <div class="maincontainer">
+      <h2>Sign In</h2>
+      <form>
+        <div class="form_control">
+          <label>username</label>
+          <input class="username" type="text" placeholder="Enter full name" />
+          <small></small>
+        </div>
+        <div class="form_control">
+          <label>E-mail</label>
+          <input class="email" type="email" placeholder="Enter E-mail" />
+          <small></small>
+        </div>
+        <div class="form_control">
+          <label>Password</label>
+          <input
+            class="password"
+            type="password"
+            placeholder="Enter password"
+          />
+          <small></small>
+        </div>
+        <div class="form_control">
+          <label>Confirm-password</label>
+          <input
+            class="cpassword"
+            type="password"
+            placeholder="Enter same password"
+          />
+          <small></small>
+        </div>
+        <input id="Submit" type="submit" value="Submit" />
+      </form>
+    </div>
+
+    <script>
+      let form = document.querySelector("form");
+      let Username = document.querySelector(".username");
+      let Email = document.querySelector(".email");
+      let Password = document.querySelector(".password");
+      let Cpassword = document.querySelector(".cpassword");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        validate();
+        clearform();
+      });
+
+      function validate() {
+        let UsernameVal = Username.value.trim();
+        let EmailVal = Email.value.trim();
+        let PasswordVal = Password.value.trim();
+        let CpasswordVal = Cpassword.value.trim();
+        // console.log(UsernameVal);
+
+        // username
+        if (UsernameVal == "") {
+          setErrorMsg(Username, "Username cannot be blank");
+        } else if (UsernameVal.length <= 3) {
+          setErrorMsg(Username, "Username must be greator then 3 letter");
+        } else {
+          setsuccessMsg(Username);
+        }
+        // Email
+        if (EmailVal == "") {
+          setErrorMsg(Email, "Email cannot be blank");
+        } else {
+          setsuccessMsg(Email);
+        }
+
+        // Password
+        if (PasswordVal == "") {
+          setErrorMsg(Password, "Username cannot be blank");
+        } else if (PasswordVal.length <= 5) {
+          setErrorMsg(Password, "Username must be greator then 6 letter");
+        } else {
+          setsuccessMsg(Password);
+        }
+
+        // confirm password
+        if (CpasswordVal != PasswordVal) {
+          setErrorMsg(Cpassword, "password dont Match");
+        } else {
+          setsuccessMsg(Cpassword);
+        }
+      }
+
+      function setErrorMsg(input, errormsg) {
+        const userval = input.parentElement;
+        let Small = userval.querySelector("small");
+        userval.classList.add("error");
+        userval.classList.remove("success");
+
+        Small.innerText = errormsg;
+      }
+
+      function setsuccessMsg(input) {
+        const userval = input.parentElement;
+
+        userval.classList.remove("error");
+      }
+
+      function clearform() {
+        Username.value = "";
+        Email.value = "";
+        Password.value = "";
+        Cpassword.value = "";
+      }
+    </script>
+  </body>
+</html>
