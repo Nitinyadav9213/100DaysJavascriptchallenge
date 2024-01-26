@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    .input {
+      padding: 30px;
+      display: flex;
+    }
+    .title {
+      text-align: center;
+      font-size: 50px;
+      font-family: "DM Serif Display", serif;
+    }
+
+    input {
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+      font-size: 20px;
+      border: 2px solid black;
+      outline: none;
+      position: relative;
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      right: 50px;
+      margin-top: 10px;
+    }
+
+    button i {
+      font-size: 20px;
+    }
+
+    .outputcontainer {
+      display: grid;
+      place-items: center;
+    }
+
+    .output {
+      background-color: rgb(255, 255, 255);
+      width: 70%;
+      padding-left: 20px;
+      padding-top: 20px;
+    }
+    .Title {
+      font-size: 40px;
+      margin-bottom: -10px;
+    }
+
+    .synonyms {
+      font-weight: 400;
+      margin-bottom: -10px;
+    }
+    .antonyms {
+      font-weight: 400;
+      border-bottom: 1px solid rgb(156, 156, 156);
+      padding-bottom: 30px;
+    }
+
+    .meaningtitle {
+      font-size: 20px;
+      font-weight: 100;
+      font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    }
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
+    li {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 15px;
+      margin-bottom: 5px;
+      word-spacing: 1px;
+      list-style: square;
+    }
+
+    .Meaningdata {
+      font-size: 20px;
+    }
+    .example {
+      font-weight: 600;
+    }
+  </style>
+  <body style="background-color: rgb(236, 236, 236)">
+    <div class="maincontainer">
+      <h2 class="title">Nitin Dictionary</h2>
+
+      <div class="input">
+        <input class="inputtext" type="text" />
+        <button>
+          <i id="search" class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <div class="outputcontainer"></div>
+    </div>
+    <script>
+      let button = document.querySelector("button");
+      let outputcontainer = document.querySelector(".outputcontainer");
+      let Sound = document.querySelector("#Sound");
+
+      let url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+
+      button.addEventListener("click", function () {
+        loadDictionary();
+      });
+      async function loadDictionary() {
+        let input = document.querySelector(".inputtext").value;
+        let res = await fetch(`${url}${input}`);
+        let data = await res.json();
+
+        try {
+          outputcontainer.innerHTML = `<div class="output">
+              <h2 class="Title">${data[0].word}</h2>
+            
+          <h4 class="synonyms">See Synonyms : ${data[0].meanings[0].synonyms}</h4>
+          <h4 class="antonyms">See Antonyms : ${data[0].meanings[2].antonyms[0]} , ${data[0].meanings[2].antonyms[1]} </h4>
+          <h4 class="meaningtitle">Meaning :
+           
+            </h4>
+          <p class="Meaningdata"> <ul>
+                <li> ${data[0].meanings[0].definitions[0].definition}</li>
+      <li>${data[0].meanings[1].definitions[0].definition}</li>
+      <li>${data[0].meanings[2].definitions[0].definition}</li>
+     </ul></p>
+
+     <h4 class="meaningtitle">Defination :
+           
+        </h4>
+      <p class="DefinationExample"> <ul>
+            <li> ${data[0].meanings[2].definitions[0].definition}</li>
+            <p class ="example"> Example : ${data[0].meanings[2].definitions[0].example} </p>
+  <li>${data[0].meanings[2].definitions[1].definition}</li>
+  <p class ="example"> Example :  ${data[0].meanings[2].definitions[1].example} </p>
+  <li>${data[0].meanings[2].definitions[2].definition}</li>
+  <p class ="example"> Example :  ${data[0].meanings[2].definitions[2].example} </p>
+  <li> ${data[0].meanings[2].definitions[3].definition}</li>
+            <p class ="example"> Example :  ${data[0].meanings[2].definitions[3].example}</p>
+  <li>${data[0].meanings[2].definitions[4].definition}</li>
+  <p class ="example"> Example :   ${data[0].meanings[2].definitions[4].example}</p>
+ </ul></p>
+ 
+        </div>`;
+        } catch (error) {
+          outputcontainer.innerHTML = `<img 
+          class="image"
+          src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png"
+          alt=""
+        />`;
+        }
+      }
+    </script>
+  </body>
+</html>
