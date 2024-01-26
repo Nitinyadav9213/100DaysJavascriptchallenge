@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .maincontainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 97vh;
+      background-image: url(https://img.freepik.com/premium-vector/chicken-dish-top-view-with-wooden-pattern-background-chicken-meat-collection-chicken-food-template_761765-41.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .titleContainer h2 {
+      font-size: 34px;
+      text-align: center;
+
+      font-family: "DM Serif Display", serif;
+    }
+
+    .titleContainer input {
+      display: block;
+      margin: auto;
+      width: 90%;
+      height: 30px;
+      border-radius: 20px;
+      border: 2px solid black;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .titleContainer p {
+      width: 700px;
+      text-align: center;
+      font-family: "Roboto Mono", monospace;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .submitbtn {
+      display: block;
+      margin: auto;
+      margin-top: 10px;
+      border: none;
+      font-size: 14px;
+      font-family: "Rubik", sans-serif;
+      font-weight: 500;
+      padding: 10px 20px;
+      background-color: #89bcba;
+      border-radius: 10px;
+    }
+
+    .headerimage {
+      width: 100%;
+      height: 300px;
+      margin-top: -150px;
+      background-image: url(https://wallpaperaccess.com/full/11062469.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #cross {
+      margin-top: 10px;
+      font-size: 15px;
+      border: 1px solid black;
+
+      padding: 8px;
+      background-color: transparent;
+    }
+
+    #cross:hover {
+      color: red;
+    }
+
+    .recipeheading h2 {
+      text-align: center;
+
+      font-family: "DM Serif Display", serif;
+
+      font-size: 2em;
+    }
+    .location {
+      display: flex;
+      justify-content: center;
+      margin-top: -10px;
+    }
+
+    .location i {
+      font-size: 25px;
+      margin-right: 17px;
+      margin-top: -2px;
+      color: #89bcba;
+    }
+
+    .location h4 {
+      margin-top: -2px;
+      font-size: 20px;
+      font-weight: 400;
+      color: rgb(105, 105, 105);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .dataandImage {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .itemImage img {
+      width: 230px;
+      height: 230px;
+
+      margin-right: 70px;
+      border-radius: 100px 100px 100px 20px;
+    }
+
+    .incredientscontainer p {
+      color: #4c4a37;
+      font-family: "Source Sans Pro", sans-serif;
+      font-size: 18px;
+      line-height: 32px;
+      padding-right: 5%;
+      padding-left: 5%;
+    }
+
+    .Errorpage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .Errorpage .Errorimage {
+      width: 600px;
+    }
+
+    .Errorpage h2 {
+      text-align: center;
+      font-family: "Source Sans Pro", sans-serif;
+      font-weight: 300;
+    }
+  </style>
+
+  <body>
+    <div class="maincontainer">
+      <div class="titleContainer">
+        <h2>Your favorite Source For Search Recipe Tips</h2>
+        <p>
+          "Savor endless culinary possibilities at your fingertips with our Meal
+          API app—delightful recipes, personalized recommendations, and
+          flavor-packed convenience in every tap."
+        </p>
+        <input
+          class="userinput"
+          type="text"
+          placeholder="search your favorite recipe"
+        />
+        <button class="submitbtn">Search</button>
+      </div>
+    </div>
+
+    <div class="datapage hidden"></div>
+
+    <script>
+      let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+
+      let Cross = document.querySelector("#cross");
+      let datapage = document.querySelector(".datapage");
+      let maincontainer = document.querySelector(".maincontainer");
+      let button = document.querySelector(".submitbtn");
+
+      button.addEventListener("click", function () {
+        maincontainer.classList.add("hidden");
+        datapage.classList.remove("hidden");
+        loadfunction();
+      });
+
+      function cross() {
+        datapage.classList.add("hidden");
+        maincontainer.classList.remove("hidden");
+      }
+
+      async function loadfunction() {
+        let userinput = document.querySelector(".userinput").value;
+
+        try {
+          let res = await fetch(url + userinput);
+          let data = await res.json();
+          let mymeals = data.meals[0];
+
+          datapage.innerHTML = `<div class="headerimage">
+            </div>
+            <button onclick="cross()" id="cross">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+            <div class = "recipeheadingOutercontainer">
+            <div class="recipeheading">
+              <h2>${mymeals.strMeal}</h2>
+            <div class = "location">   <i class="fa-solid fa-location-dot"></i>
+              <h4>${mymeals.strArea}</h4>
+            </div>
+            </div>
+
+            <div class="dataandImage">
+              <div class="incredientscontainer">
+                <h4>Instruction: </h4>
+                <p>${mymeals.strInstructions}</p>
+                </div>
+              
+              <div class="itemImage">
+                <img src = "${mymeals.strMealThumb}"
+
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>`;
+
+          // console.log(mymeals);
+        } catch (error) {
+          console.log("Enter A valid Meal Name");
+          datapage.innerHTML = `
+         <div class = "Errorpage">
+          <img 
+          class="Errorimage"
+          src="https://cdn.dribbble.com/users/189859/screenshots/3639645/media/36cd3a329cb8b25fc052a87f344f653a.gif"
+          alt=""
+        />
+        <h2>Enter valid meal name?? </h2>
+      </div>
+        `;
+        }
+        userinput = "";
+      }
+    </script>
+  </body>
+</html>
