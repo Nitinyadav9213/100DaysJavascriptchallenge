@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  uses destructuring to display user details (name, age, and email) from an object.
+
+      const user = {
+        name: "Nitin",
+        age: 18,
+        email: "nitinyadav9213978060@gmail.com",
+      };
+      const { name, age, email } = user;
+      console.log(`Name: ${name}, Age: ${age}, Email: ${email}`);
+
+      //   swaps the values of two variables using destructuring.
+
+      let a = 5,
+        b = 10;
+      [a, b] = [b, a];
+      console.log(`a: ${a}, b: ${b}`);
+
+      //   Use destructuring to filter out odd numbers from an array.
+
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      const filteredNumbers = numbers.filter((num) => num % 2 === 0);
+      console.log(filteredNumbers);
+
+      //   Use destructuring to display product details (name, price, and category) from an array of objects.
+
+      const products = [
+        { name: "Laptop", price: 800, category: "Electronics" },
+        { name: "T-shirt", price: 20, category: "Apparel" },
+      ];
+      for (const { name, price, category } of products) {
+        console.log(`Name: ${name}, Price: $${price}, Category: ${category}`);
+      }
+
+      // Use destructuring to display student grades from an array of objects.
+
+      const students = [
+        { name: "Nitin", grade: "A" },
+        { name: "Ramesh", grade: "B" },
+
+        { name: "Suresh", grade: "C" },
+      ];
+      for (const { name, grade } of students) {
+        console.log(`${name} has grade ${grade}`);
+      }
+
+      //   Use destructuring to sum the elements of an array and display the result.
+
+      const Numbers = [1, 2, 3, 4, 5];
+      const [first, second, third, fourth, fifth] = Numbers;
+      const sum = first + second + third + fourth + fifth;
+      console.log(`Sum: ${sum}`);
+
+      //   extracts and displays the first and last name from a full name using destructuring.
+
+      const fullName = "Nitin yadav";
+      const [firstName, lastName] = fullName.split(" ");
+      console.log(`First Name: ${firstName}, Last Name: ${lastName}`);
+    </script>
+  </body>
+</html>
